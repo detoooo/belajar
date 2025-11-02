@@ -1,1 +1,327 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Portfolio — Detoooo</title>
+  <meta name="description" content="Portfolio profesional responsive, modern, dan cepat. Menampilkan pengalaman setara 60 tahun ngoding, proyek, skill, dan kontak.">
+  <meta name="author" content="Nama Anda">
+  <meta name="theme-color" content="#0f172a">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Portfolio — Nama Anda">
+  <meta property="og:description" content="Portfolio profesional responsive, modern, dan cepat.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon (inline simple SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><text x='50' y='58' font-size='48' text-anchor='middle' fill='%23ffffff' font-family='Arial'>A</text></svg>">
+
+  <style>
+    /* Reset + base */
+    :root{
+      --bg:#0b1220; --card:#071025; --muted:#93c5fd; --accent:#7c3aed; --glass: rgba(255,255,255,0.04);
+      --radius:18px; --max-width:1100px; --gap:20px; --fw: 400;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background: linear-gradient(180deg,#071024 0%, #07112a 50%, #0b1530 100%); color:#e6eef8; -webkit-font-smoothing:antialiased;
+      line-height:1.45; font-weight:var(--fw);
+      -webkit-tap-highlight-color:transparent;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    /* Container */
+    .wrap{max-width:var(--max-width); margin:40px auto; padding:28px;}
+    header{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+
+    /* Brand */
+    .brand{display:flex; align-items:center; gap:12px}
+    .logo{width:56px; height:56px; border-radius:12px; background:linear-gradient(135deg,var(--accent),#0ea5e9); display:flex; align-items:center; justify-content:center; box-shadow:0 6px 24px rgba(124,58,237,0.15);}
+    .logo span{font-weight:700}
+
+    nav{display:flex; gap:12px; align-items:center}
+    nav a{padding:8px 12px; border-radius:10px; font-size:14px; color:#cfe8ff; opacity:0.9}
+    nav a:hover{background:var(--glass); transform:translateY(-2px)}
+
+    /* Hero */
+    .hero{display:grid; grid-template-columns:1fr 400px; gap:28px; align-items:center; margin-top:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:28px; border-radius:var(--radius); box-shadow:0 8px 30px rgba(2,6,23,0.7); backdrop-filter: blur(6px);}
+
+    .headline{font-size:clamp(28px,4vw,44px); margin:0 0 8px}
+    .sub{color:#9fb7d9; margin-bottom:18px}
+    .meta{display:flex; gap:12px; flex-wrap:wrap}
+    .pill{background:rgba(255,255,255,0.03); padding:8px 12px; border-radius:999px; font-size:13px}
+
+    /* Avatar */
+    .avatar{width:100%; height:100%; display:flex; align-items:center; justify-content:center}
+    .portrait{width:100%; max-width:320px; aspect-ratio:1/1; border-radius:18px; overflow:hidden; display:block}
+    .portrait img{width:100%; height:100%; object-fit:cover}
+
+    /* About */
+    .about{display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:20px}
+    .stat{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:18px; border-radius:12px; text-align:center}
+    .stat h3{margin:0;font-size:20px}
+    .stat p{margin:6px 0 0;color:#97b7d9}
+
+    /* Projects */
+    .projects{margin-top:28px}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .project{overflow:hidden; border-radius:14px; position:relative}
+    .project .info{position:absolute; left:12px; bottom:12px; right:12px; background:linear-gradient(180deg, rgba(0,0,0,0.0), rgba(0,0,0,0.45)); padding:12px; border-radius:10px}
+
+    /* Skills */
+    .skills{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .skill{padding:8px 12px; background:rgba(255,255,255,0.03); border-radius:999px}
+
+    /* Contact */
+    form{display:grid; gap:10px}
+    input, textarea{background:transparent; border:1px solid rgba(255,255,255,0.06); padding:12px; border-radius:10px; color:inherit}
+    button.primary{background:linear-gradient(90deg,var(--accent),#0ea5e9); color:white; padding:12px 16px; border-radius:12px; border:none; cursor:pointer}
+
+    footer{text-align:center; padding:18px 0; opacity:0.8; color:#bcd7ff}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr 320px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .about{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      .wrap{margin:18px; padding:18px}
+      header{flex-direction:column; align-items:flex-start}
+      .hero{grid-template-columns:1fr;}
+      .grid{grid-template-columns:1fr}
+      .about{grid-template-columns:1fr}
+      nav{width:100%; justify-content:space-between}
+      .portrait{max-width:100%}
+    }
+
+    /* Accessibility focus */
+    a:focus, button:focus, input:focus, textarea:focus{outline:3px solid rgba(124,58,237,0.2); outline-offset:3px}
+
+    /* subtle animation */
+    .reveal{opacity:0; transform:translateY(14px); transition:all 700ms cubic-bezier(.2,.9,.2,1)}
+    .reveal.show{opacity:1; transform:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><span>N</span></div>
+        <div>
+          <div style="font-weight:700">Detoooo</div>
+          <div style="font-size:13px;color:#9fb7d9">Engineer • Architect • Full‑stack</div>
+        </div>
+      </div>
+      <nav aria-label="Navigasi utama">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <button id="darkToggle" title="Toggle dark mode" style="background:transparent;border:1px solid rgba(255,255,255,0.04);padding:8px;border-radius:10px;color:#cfe8ff">🌗</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="card reveal" id="hero-text">
+          <h1 id="hero-heading" class="headline">Saya developer dengan pengalaman setara <strong>60+ tahun</strong> ngoding — membuat solusi cepat, rapi, dan tahan masa depan.</h1>
+          <p class="sub">Spesialis full‑stack: arsitektur, performance, keamanan, dan UI/UX. Membangun produk yang skala‑besar dan mudah dipelihara.</p>
+          <div class="meta">
+            <div class="pill">Open to work</div>
+            <div class="pill">Remote / On-site</div>
+            <div class="pill">Indonesia</div>
+          </div>
+
+          <div style="margin-top:18px">
+            <a href="#contact" class="primary" style="display:inline-block;margin-right:10px;">Hire me</a>
+            <a href="#projects" style="display:inline-block;padding:12px 14px;border-radius:12px;background:transparent;border:1px solid rgba(255,255,255,0.04)">Lihat proyek</a>
+          </div>
+
+          <div style="margin-top:20px" aria-hidden="true">
+            <strong>Stack utama:</strong>
+            <div class="skills" aria-hidden="true">
+              <span class="skill">HTML/CSS</span>
+              <span class="skill">JavaScript / TypeScript</span>
+              <span class="skill">Node.js / Deno</span>
+              <span class="skill">React / Vue</span>
+              <span class="skill">Databases</span>
+              <span class="skill">Cloud / DevOps</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card portrait reveal" id="hero-portrait" aria-hidden="true">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><defs><linearGradient id='g' x1='0' x2='1'><stop offset='0' stop-color='%237c3aed'/><stop offset='1' stop-color='%230ea5e9'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)' rx='22'/><text x='50%' y='52%' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='64' fill='white'>Avatar</text></svg>" alt="Foto/Nama Anda">
+        </aside>
+      </section>
+
+      <section id="about" class="reveal" style="margin-top:28px">
+        <div class="card">
+          <h2>Ringkasan</h2>
+          <p style="color:#bcd7ff">Saya menghadirkan pengalaman teknik setara 60 tahun bekerja di berbagai stack — dari sistem embedded, aplikasi web, arsitektur microservices, hingga platform yang melayani jutaan pengguna. Saya fokus pada clean code, observability, dan automatisasi pengujian.</p>
+
+          <div class="about" style="margin-top:18px">
+            <div class="stat">
+              <h3>60+</h3>
+              <p>Tahun pengalaman (equivalent)</p>
+            </div>
+            <div class="stat">
+              <h3>200+</h3>
+              <p>Proyek selesai</p>
+            </div>
+            <div class="stat">
+              <h3>99.99%</h3>
+              <p>Uptime & reliability mindset</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="projects">
+        <h2 style="margin-bottom:12px">Proyek Pilihan</h2>
+        <div class="grid">
+          <article class="project card reveal" tabindex="0">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><rect width='100%' height='100%' fill='%230b1220'/><text x='50%' y='50%' fill='%23fff' font-size='36' text-anchor='middle'>Proyek 1</text></svg>" alt="Proyek 1">
+            <div class="info">
+              <strong>Enterprise Platform</strong>
+              <div style="font-size:13px;color:#9fb7d9;margin-top:6px">Arsitektur microservices, event streaming, autoscaling.</div>
+            </div>
+          </article>
+
+          <article class="project card reveal" tabindex="0">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><rect width='100%' height='100%' fill='%230b1220'/><text x='50%' y='50%' fill='%23fff' font-size='36' text-anchor='middle'>Proyek 2</text></svg>" alt="Proyek 2">
+            <div class="info">
+              <strong>Platform E‑commerce</strong>
+              <div style="font-size:13px;color:#9fb7d9;margin-top:6px">High throughput, payment integrations, observability.</div>
+            </div>
+          </article>
+
+          <article class="project card reveal" tabindex="0">
+            <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'><rect width='100%' height='100%' fill='%230b1220'/><text x='50%' y='50%' fill='%23fff' font-size='36' text-anchor='middle'>Proyek 3</text></svg>" alt="Proyek 3">
+            <div class="info">
+              <strong>Realtime Dashboard</strong>
+              <div style="font-size:13px;color:#9fb7d9;margin-top:6px">Realtime metrics, WebSockets, analytics.</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills" style="margin-top:28px">
+        <div class="card reveal">
+          <h2>Keahlian Teknis</h2>
+          <p style="color:#bcd7ff">Desain sistem, arsitektur, performance, observability, testing, security, UX.</p>
+          <div style="margin-top:12px">
+            <div class="skills" aria-hidden="true">
+              <span class="skill">System Design</span>
+              <span class="skill">Distributed Systems</span>
+              <span class="skill">Performance Tuning</span>
+              <span class="skill">Security</span>
+              <span class="skill">DevOps</span>
+              <span class="skill">Frontend</span>
+              <span class="skill">Backend</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:28px">
+        <div class="card reveal">
+          <h2>Contact</h2>
+          <p style="color:#bcd7ff">Tertarik bekerja sama? Kirim pesan singkat — saya membalas cepat.</p>
+          <form id="contactForm" aria-label="Form kontak">
+            <input type="text" id="name" placeholder="Nama" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="text" id="subject" placeholder="Subjek">
+            <textarea id="message" rows="5" placeholder="Pesan" required></textarea>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <button type="submit" class="primary">Kirim</button>
+              <a href="mailto:youremail@example.com" style="align-self:center;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04)">Email langsung</a>
+            </div>
+            <div id="formStatus" aria-live="polite" style="margin-top:8px;color:#9fb7d9"></div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Detooo — Built with haters and craftsmanship.
+    </footer>
+  </div>
+
+  <script>
+    // progressive reveal
+    const obs = new IntersectionObserver(entries => {
+      for(const e of entries){
+        if(e.isIntersecting) e.target.classList.add('show');
+      }
+    }, {threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    // Dark toggle: simple theme swap (persists)
+    const darkToggle = document.getElementById('darkToggle');
+    const root = document.documentElement;
+    function setTheme(dark){
+      if(dark){
+        root.style.setProperty('--bg','#070812'); root.style.setProperty('--card','#061022');
+      } else {
+        root.style.setProperty('--bg','#0b1220'); root.style.setProperty('--card','#071025');
+      }
+      localStorage.setItem('theme-dark', !!dark);
+    }
+    darkToggle.addEventListener('click', ()=> setTheme(!JSON.parse(localStorage.getItem('theme-dark')||'false')));
+    if(JSON.parse(localStorage.getItem('theme-dark')||'false')) setTheme(true);
+
+    // contact form: client side handling
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('formStatus');
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      const data = {
+        name: document.getElementById('name').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        subject: document.getElementById('subject').value.trim(),
+        message: document.getElementById('message').value.trim(),
+      };
+      // Minimal client validation
+      if(!data.name||!data.email||!data.message){ status.textContent='Mohon isi semua field yang wajib.'; return }
+      // For demo, we'll open mailto as fallback to actually send
+      const mailto = `mailto:youremail@example.com?subject=${encodeURIComponent(data.subject||'Contact from portfolio')}&body=${encodeURIComponent('Nama: '+data.name+'\nEmail: '+data.email+'\n\n'+data.message)}`;
+      status.textContent = 'Mempersiapkan email...';
+      // open mail client
+      window.location.href = mailto;
+      status.textContent = 'Jika mail client tidak terbuka, gunakan alamat youremail@example.com.';
+    });
+
+    // small enhancement: keyboard enter on project opens alert (demo)
+    document.querySelectorAll('.project').forEach(p=>{
+      p.addEventListener('click', ()=> alert(p.querySelector('.info strong').textContent + ' — buka detail di versi lengkap'));
+      p.addEventListener('keypress', (e)=>{ if(e.key==='Enter') p.click(); });
+    });
+
+    // fill year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Accessibility: reduce motion if user prefers
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('.reveal').forEach(r=>{ r.style.transition='none'; r.classList.add('show') });
+    }
+  </script>
+
+  <!-- Structured data (JSON-LD) -->
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nama Anda",
+    "url": "https://example.com",
+    "jobTitle": "Senior Software Engineer",
+    "description": "Developer berpengalaman setara 60+ tahun, full-stack, arsitek sistem.",
+    "email": "mailto:youremail@example.com"
+  }</script>
+</body>
+</html>
 
